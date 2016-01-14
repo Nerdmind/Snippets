@@ -1,4 +1,13 @@
 #!/bin/bash
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
+# MySQL database backup script             [Thomas Lange <thomas@nerdmind.de>] #
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
+#                                                                              #
+# This database backup script loop through each database (except the excluded  #
+# databases in DATABASE_EXCLUDED) and creates a bzip2 compressed backup file.  #
+#                                                                              #
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
+
 #===============================================================================
 # Define database login credentials and excluded databases
 #===============================================================================
@@ -28,11 +37,12 @@ fi
 #===============================================================================
 # Fetch all databases from local MySQL server
 #===============================================================================
-DATABASES=`mysql --user="${DATABASE_USERNAME}" --password="${DATABASE_PASSWORD}" --execute "SHOW DATABASES;" | grep -Ev "${DATABASE_EXCLUDED}"`
+DATABASES=`mysql --user="${DATABASE_USERNAME}" --password="${DATABASE_PASSWORD}" --execute="SHOW DATABASES;" | grep -Ev "${DATABASE_EXCLUDED}"`
 
 #===============================================================================
 # Loop through all databases and create compressed dump
 #===============================================================================
 for database in ${DATABASES}; do
+	echo "[INFO] Creating compressed database backup for ${database}"
 	mysqldump --lock-all-tables --user="${DATABASE_USERNAME}" --password="${DATABASE_PASSWORD}" "${database}" | bzip2 > $(printf "${DIRECTORY_FILE}" "${database}")
 done
