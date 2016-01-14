@@ -34,5 +34,5 @@ DATABASES=`mysql --user="${DATABASE_USERNAME}" --password="${DATABASE_PASSWORD}"
 # Loop through all databases and create compressed dump
 #===============================================================================
 for database in ${DATABASES}; do
-	mysqldump --user="${DATABASE_USERNAME}" --password="${DATABASE_PASSWORD}" "${database}" | bzip2 > $(printf "${DIRECTORY_FILE}" "${database}")
+	mysqldump --lock-all-tables --user="${DATABASE_USERNAME}" --password="${DATABASE_PASSWORD}" "${database}" | bzip2 > $(printf "${DIRECTORY_FILE}" "${database}")
 done
