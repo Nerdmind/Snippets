@@ -133,5 +133,5 @@ fi
 #===============================================================================
 # ADDITIONAL RULES
 #===============================================================================
-${IPTABLES_V4} --append INPUT --source 37.120.172.0/22 --jump ACCEPT
+${IPTABLES_V4} --append INPUT --source 192.168.1.0/24 --jump ACCEPT
 ${IPTABLES_V6} --append INPUT --source fe80::/64 --jump ACCEPT
