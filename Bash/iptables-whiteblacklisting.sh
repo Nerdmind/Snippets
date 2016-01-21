@@ -21,36 +21,21 @@ MODE='WHITELISTING' # This can only be "WHITELISTING" or "BLACKLISTING"
 #===============================================================================
 WHITELISTING=(
 	# SSH
-	'tcp:2200'
+	'tcp:22'
+
+	# DNS
+	'tcp:53'
+	'udp:53'
 
 	# HTTP
 	'tcp:80'
 	'tcp:443'
-
-	# XMPP
-	'tcp:5222'
-	'tcp:5269'
-
-	# TeamSpeak
-	'udp:9987'
-	'tcp:30033'
-	'tcp:10011'
-	'tcp:41144'
-
-	# Sauerbraten
-	'udp:28710'
-	'udp:28711'
-	'udp:28810'
-	'udp:28811'
 )
 
 #===============================================================================
 # Blacklisting matching rules: <protocol>:<port>
 #===============================================================================
-BLACKLISTING=(
-	'udp:28785'
-	'udp:28786'
-)
+BLACKLISTING=()
 
 #===============================================================================
 # Define IPTables commands for IPv4 and IPv6
