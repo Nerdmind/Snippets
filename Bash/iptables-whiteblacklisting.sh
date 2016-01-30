@@ -64,9 +64,10 @@ IPTABLES --policy INPUT ACCEPT
 IPTABLES --flush INPUT
 
 #===============================================================================
-# Ping requests over ICMP protocol are always accepted
+# Ping requests over ICMP and ICMPv6 protocol are always accepted
 #===============================================================================
-IPTABLES --append INPUT --protocol icmp --jump ACCEPT
+${IPTABLES_V4} --append INPUT --protocol icmp   --jump ACCEPT
+${IPTABLES_V6} --append INPUT --protocol icmpv6 --jump ACCEPT
 
 #===============================================================================
 # Local loopback connections are also always accepted
