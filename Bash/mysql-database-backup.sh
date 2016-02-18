@@ -25,7 +25,7 @@ DIRECTORY_FILE="${DIRECTORY_ROOT}${DIRECTORY_PATH}%s.sql.bz2"
 #===============================================================================
 # Delete old backups in backup root directory
 #===============================================================================
-find "${DIRECTORY_ROOT}" -type d -mtime +30 -exec rm -r {} \;
+find "${DIRECTORY_ROOT}" -type d -mtime +30 -exec rm --recursive {} \;
 
 #===============================================================================
 # Create backup path directory if not exists
