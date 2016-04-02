@@ -53,8 +53,8 @@ IPTABLES_SAVE_V6=`which ip6tables-save`
 # Wrapper function for IPTables with IPv4 and IPv6
 #===============================================================================
 IPTABLES() {
-	${IPTABLES_V4} $@ # Executes the given arguments with IPTables for IPv4
-	${IPTABLES_V6} $@ # Executes the given arguments with IPTables for IPv6
+	${IPTABLES_V4} $@ # Appends the given argument string to IPTables for IPv4
+	${IPTABLES_V6} $@ # Appends the given argument string to IPTables for IPv6
 }
 
 #===============================================================================
