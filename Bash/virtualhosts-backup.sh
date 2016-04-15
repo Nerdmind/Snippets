@@ -35,7 +35,7 @@ DIRECTORY_FROM="/var/www/"
 #===============================================================================
 # Delete old backups in backup root directory
 #===============================================================================
-find "${DIRECTORY_ROOT}" -type d -mtime +14 -exec rm --recursive {} \;
+find "${DIRECTORY_ROOT}"* -maxdepth 0 -type d -mtime +14 -exec rm --recursive {} \;
 
 #===============================================================================
 # Create backup path directory if not exists
