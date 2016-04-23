@@ -21,15 +21,21 @@ MODE='WHITELISTING' # This can only be "WHITELISTING" or "BLACKLISTING"
 #===============================================================================
 WHITELISTING=(
 	# SSH
-	'tcp:22'
-
-	# DNS
-	'tcp:53'
-	'udp:53'
+	'tcp:2200'
 
 	# HTTP
 	'tcp:80'
 	'tcp:443'
+
+	# XMPP
+	'tcp:5222'
+	'tcp:5269'
+
+	# TeamSpeak
+	'udp:9987'
+	'tcp:30033'
+	'tcp:10011'
+	'tcp:41144'
 )
 
 #===============================================================================
