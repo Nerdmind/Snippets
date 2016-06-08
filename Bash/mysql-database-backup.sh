@@ -37,7 +37,7 @@ fi
 #===============================================================================
 # Fetch all database names from local MySQL server
 #===============================================================================
-DATABASES=`mysql --user="${DATABASE_USERNAME}" --password="${DATABASE_PASSWORD}" --execute="SHOW DATABASES;" | grep -Ev "${DATABASE_EXCLUDED}"`
+DATABASES=$(mysql --user="${DATABASE_USERNAME}" --password="${DATABASE_PASSWORD}" --execute="SHOW DATABASES;" | grep -Ev "${DATABASE_EXCLUDED}")
 
 #===============================================================================
 # Loop through all database names and create compressed database backup

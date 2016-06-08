@@ -46,14 +46,14 @@ BLACKLISTING=()
 #===============================================================================
 # Define IPTables commands for IPv4 and IPv6
 #===============================================================================
-IPTABLES_V4=`which iptables`
-IPTABLES_V6=`which ip6tables`
+IPTABLES_V4=$(which iptables)
+IPTABLES_V6=$(which ip6tables)
 
 #===============================================================================
 # Define IPTables-save commands for IPv4 and IPv6
 #===============================================================================
-IPTABLES_SAVE_V4=`which iptables-save`
-IPTABLES_SAVE_V6=`which ip6tables-save`
+IPTABLES_SAVE_V4=$(which iptables-save)
+IPTABLES_SAVE_V6=$(which ip6tables-save)
 
 #===============================================================================
 # Wrapper function for IPTables with IPv4 and IPv6
