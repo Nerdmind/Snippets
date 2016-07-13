@@ -1,6 +1,6 @@
 #!/bin/bash
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
-# IPTables port whitelisting-/blacklisting    Thomas Lange <code@nerdmind.de>] #
+# IPTables port whitelisting-/blacklisting   [Thomas Lange <code@nerdmind.de>] #
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
 #                                                                              #
 # This script configures your firewall with whitelisting or blacklisting rules #
