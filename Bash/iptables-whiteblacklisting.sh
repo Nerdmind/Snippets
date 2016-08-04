@@ -84,7 +84,7 @@ ${IPTABLES_V6} --append INPUT --protocol icmpv6 --jump ACCEPT
 #===============================================================================
 # Local loopback connections are also always accepted
 #===============================================================================
-IPTABLES --append INPUT -i lo --jump ACCEPT
+IPTABLES --append INPUT --in-interface lo --jump ACCEPT
 
 #===============================================================================
 # Accept all (already) related and established connections
