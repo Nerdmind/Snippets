@@ -150,7 +150,7 @@ ${IPTABLES_V4} --append INPUT --source 192.168.1.0/24 --jump ACCEPT
 ${IPTABLES_V6} --append INPUT --source fe80::/64 --jump ACCEPT
 
 #===============================================================================
-# Save IPTables configuration permanent
+# Save IPTables configuration permanent [check the correct file paths]
 #===============================================================================
-[ ${IPTABLES_SAVE_V4} ] && ${IPTABLES_SAVE_V4} > /etc/iptables/rules.v4
-[ ${IPTABLES_SAVE_V6} ] && ${IPTABLES_SAVE_V6} > /etc/iptables/rules.v6
+#[ ${IPTABLES_SAVE_V4} ] && ${IPTABLES_SAVE_V4} > /etc/iptables/rules.v4
+#[ ${IPTABLES_SAVE_V6} ] && ${IPTABLES_SAVE_V6} > /etc/iptables/rules.v6
