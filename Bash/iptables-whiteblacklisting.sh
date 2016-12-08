@@ -112,14 +112,14 @@ IPTABLES --delete-chain "${BLACKLIST_CHAIN}" &> /dev/null
 #===============================================================================
 # Create new whitelisting-/blacklisting chain
 #===============================================================================
-if [ ${MODE} == 'WHITELISTING' ]; then IPTABLES --new-chain "${WHITELIST_CHAIN}"; fi
-if [ ${MODE} == 'BLACKLISTING' ]; then IPTABLES --new-chain "${BLACKLIST_CHAIN}"; fi
+[ ${MODE} == 'WHITELISTING' ] && IPTABLES --new-chain "${WHITELIST_CHAIN}"
+[ ${MODE} == 'BLACKLISTING' ] && IPTABLES --new-chain "${BLACKLIST_CHAIN}"
 
 #===============================================================================
 # Create reference to the whitelisting-/blacklisting chain
 #===============================================================================
-if [ ${MODE} == 'WHITELISTING' ]; then IPTABLES --table filter --append INPUT --jump "${WHITELIST_CHAIN}"; fi
-if [ ${MODE} == 'BLACKLISTING' ]; then IPTABLES --table filter --append INPUT --jump "${BLACKLIST_CHAIN}"; fi
+[ ${MODE} == 'WHITELISTING' ] && IPTABLES --table filter --append INPUT --jump "${WHITELIST_CHAIN}"
+[ ${MODE} == 'BLACKLISTING' ] && IPTABLES --table filter --append INPUT --jump "${BLACKLIST_CHAIN}"
 
 #===============================================================================
 # Create IPTables matching rules for whitelisting
@@ -152,5 +152,5 @@ ${IPTABLES_V6} --append INPUT --source fe80::/64 --jump ACCEPT
 #===============================================================================
 # Save IPTables configuration permanent
 #===============================================================================
-if [ ${IPTABLES_SAVE_V4} ]; then ${IPTABLES_SAVE_V4} > /etc/iptables/rules.v4; fi
-if [ ${IPTABLES_SAVE_V6} ]; then ${IPTABLES_SAVE_V6} > /etc/iptables/rules.v6; fi
+[ ${IPTABLES_SAVE_V4} ] && ${IPTABLES_SAVE_V4} > /etc/iptables/rules.v4
+[ ${IPTABLES_SAVE_V6} ] && ${IPTABLES_SAVE_V6} > /etc/iptables/rules.v6
