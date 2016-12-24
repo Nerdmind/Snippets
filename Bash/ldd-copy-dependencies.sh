@@ -8,17 +8,17 @@
 # be mapped relative to the target directory. The binary file itself will also #
 # be copied to the target directory.                                           #
 #                                                                              #
-# ARGUMENT [-b]: Full path to the binary whose dependencies shall be copied.   #
-# ARGUMENT [-t]: Full path to the target directory for the dependencies.       #
+# OPTION [-b]: Full path to the binary whose dependencies shall be copied.     #
+# OPTION [-t]: Full path to the target directory for the dependencies.         #
 #                                                                              #
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
 
 #===============================================================================
 # Parsing command-line arguments with the getopts shell builtin
 #===============================================================================
-while getopts :b:t: opt
+while getopts :b:t: option
 do
-	case $opt in
+	case $option in
 		b) ARGUMENT_BINARY="$OPTARG" ;;
 		t) ARGUMENT_TARGET="$OPTARG" ;;
 	esac
