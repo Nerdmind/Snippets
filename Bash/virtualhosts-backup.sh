@@ -23,7 +23,19 @@
 #          |--- config                                                         #
 #          |--- htdocs                                                         #
 #                                                                              #
+# OPTION [-q]: Enable quiet mode for use in crontab.                           #
+#                                                                              #
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
+
+#===============================================================================
+# Parsing command-line arguments with the getopts shell builtin
+#===============================================================================
+while getopts :q option
+do
+	case $option in
+		q) ARGUMENT_QUIETMODE=true ;;
+	esac
+done
 
 #===============================================================================
 # Define backup main directories
@@ -55,13 +67,13 @@ for username in $(find ${DIRECTORY_FROM}* -maxdepth 0 -type d -exec basename {} 
 	DIRECTORY_USER="${DIRECTORY_ROOT}${DIRECTORY_PATH}${username}/"
 	DIRECTORY_FILE="${DIRECTORY_USER}%s.tar.bz2"
 
-	echo "[INFO] Entering directory: ${DIRECTORY_FROM}${username}/:"
+	[ ! $ARGUMENT_QUIETMODE ] && echo "[INFO] Entering directory: ${DIRECTORY_FROM}${username}/:"
 
 	#===============================================================================
 	# Create backup sub path directory if not exists
 	#===============================================================================
 	if [ ! -d "${DIRECTORY_USER}" ]; then
-		echo "[INFO] Creating backup directory for user $username [...]"
+		[ ! $ARGUMENT_QUIETMODE ] && echo "[INFO] Creating backup directory for user $username [...]"
 		mkdir "${DIRECTORY_USER}"
 	fi
 
@@ -69,7 +81,7 @@ for username in $(find ${DIRECTORY_FROM}* -maxdepth 0 -type d -exec basename {} 
 	# Loop through all virtualhosts within the user directory
 	#===============================================================================
 	for virtualhost in $(find ${DIRECTORY_FROM}${username}/* -maxdepth 0 -type d -exec basename {} \;); do
-		echo "[INFO] Creating compressed backup for virtualhost $virtualhost [...]"
+		[ ! $ARGUMENT_QUIETMODE ] && echo "[INFO] Creating compressed backup for virtualhost $virtualhost [...]"
 		tar --create --bzip2 --file "$(printf "${DIRECTORY_FILE}" "${virtualhost}")" --directory "${DIRECTORY_FROM}${username}/" "${virtualhost}"
 	done
 done

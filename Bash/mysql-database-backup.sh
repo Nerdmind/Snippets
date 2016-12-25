@@ -6,7 +6,19 @@
 # This database backup script goes through each database (except the excluded  #
 # databases in DATABASE_EXCLUDED) and creates a bzip2 compressed backup file.  #
 #                                                                              #
+# OPTION [-q]: Enable quiet mode for use in crontab.                           #
+#                                                                              #
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
+
+#===============================================================================
+# Parsing command-line arguments with the getopts shell builtin
+#===============================================================================
+while getopts :q option
+do
+	case $option in
+		q) ARGUMENT_QUIETMODE=true ;;
+	esac
+done
 
 #===============================================================================
 # Define database login credentials and excluded databases
@@ -43,6 +55,6 @@ DATABASES=$(mysql --user="${DATABASE_USERNAME}" --password="${DATABASE_PASSWORD}
 # Loop through all database names and create compressed database backup
 #===============================================================================
 for database in ${DATABASES}; do
-	echo "[INFO] Creating compressed backup for database ${database} [...]"
+	[ ! $ARGUMENT_QUIETMODE ] && echo "[INFO] Creating compressed backup for database ${database} [...]"
 	mysqldump --lock-all-tables --user="${DATABASE_USERNAME}" --password="${DATABASE_PASSWORD}" "${database}" | bzip2 > $(printf "${DIRECTORY_FILE}" "${database}")
 done
