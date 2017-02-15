@@ -91,7 +91,7 @@ BackgroundThread.daemon = True
 BackgroundThread.start()
 
 #===============================================================================
-# Run updateDisplayRotation() in the background
+# Change the smileys face after a random period of time
 #===============================================================================
 while True:
 	SenseHat.set_pixels(image_a)
