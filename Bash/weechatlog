@@ -1,0 +1,55 @@
+#!/bin/bash
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
+# Weechat log file converter                 [Thomas Lange <code@nerdmind.de>] #
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
+#                                                                              #
+# This script can convert WeeChat log files to another format like markdown or #
+# better readable plaintext. The script assumes that the WeeChat log files are #
+# given in the following format: 2019-01-10 22:52:30\t<username>\t<message>    #
+#                                                                              #
+# OPTION [-f]: Output format ("md" or "txt"; default is "txt")                 #
+#                                                                              #
+# USAGE:                                                                       #
+# weechatlog {-f txt|md} username.log > converted.txt                          #
+# cat username.log | weechatlog {-f txt|md} > converted.txt                    #
+#                                                                              #
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
+
+#===============================================================================
+# Parse command-line arguments with getopts
+#===============================================================================
+ARGUMENT_FORMAT="txt" # default output format
+
+while getopts :f: option
+do
+	case $option in
+		f) ARGUMENT_FORMAT="$OPTARG" ;;
+	esac
+done; shift $((OPTIND-1))
+
+#===============================================================================
+# Pattern part
+#===============================================================================
+PATTERN_DATE="\([0-9]*\)-\([0-9]*\)-\([0-9]*\)" # References: 1, 2, 3
+PATTERN_TIME="\([0-9]*\):\([0-9]*\):\([0-9]*\)" # References: 4, 5, 6
+
+PATTERN="${PATTERN_DATE} ${PATTERN_TIME}\t\([^\s]*\)\t\(.*\)"
+
+#===============================================================================
+# Replace part
+#===============================================================================
+case $ARGUMENT_FORMAT in
+	txt) REPLACE='\7 am \3.\2.\1 um \4:\5:\6:\n\8\n' ;;
+	md)  REPLACE='**<u>\7</u> <small>am \3.\2.\1 um \4:\5:\6:</small>**\n<p>\8</p>\n' ;;
+
+	*) echo "Unknown format (-f): $ARGUMENT_FORMAT" && exit 1
+esac
+
+#===============================================================================
+# Execute sed
+#===============================================================================
+if [ -z "$1" ]; then
+	sed "s#$PATTERN#$REPLACE#" # read input from stdin
+else
+	sed "s#$PATTERN#$REPLACE#" "$1"
+fi
