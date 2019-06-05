@@ -1,0 +1,71 @@
+#!/usr/bin/env python3
+# Export all SMS from the SQLite database of the com.android.messaging
+# app as simple plaintext sorted by conversation to stdout.
+#
+# Usage instructions for LineageOS 14.1 (tested on OnePlus X [onyx]):
+# 1. Enable USB debugging in the developer options
+# 2. Allow root access from ADB in the developer options
+# 3. Connect the device and restart the adb daemon in root mode:
+#    $ adb root
+# 4. Pull the corresponding database file:
+#    $ adb pull /data/data/com.android.messaging/databases/bugle_db .
+# 5. Pass the name of the database file to this script:
+#    $ ./{this_script} bugle_db
+
+import os
+import sys
+import sqlite3
+from datetime import datetime
+
+# Default
+date_format_string = "%Y-%m-%d %H:%M:%S"
+
+# German version
+# date_format_string = "am %d.%m.%Y um %H:%M:%S"
+
+if len(sys.argv) < 2:
+	exit("Usage: {} database_file > formatted.txt".format(sys.argv[0]))
+
+if not os.path.isfile(sys.argv[1]):
+	exit("Could not open file {}".format(sys.argv[1]))
+
+# Establish connection to local SQLite database
+connection = sqlite3.connect(sys.argv[1])
+
+# Get a cursor to the SQLite database connection
+c = connection.cursor();
+
+c.execute("SELECT conversations._id, conversations.name, conversations.participant_normalized_destination \
+	FROM conversations WHERE latest_message_id NOT NULL ORDER BY name")
+
+for conversation in c.fetchall():
+	data_id = conversation[0]
+	data_name = conversation[1]
+	data_dest = conversation[2]
+
+	print("==================================================")
+	print("{} [{}]".format(data_name, data_dest))
+	print("==================================================")
+
+	c.execute("SELECT messages._id, parts.text, parts.timestamp, participants.sim_slot_id FROM messages \
+		LEFT JOIN parts ON messages._id = parts.message_id LEFT JOIN participants ON messages.sender_id = participants._id \
+		WHERE messages.conversation_id = ? ORDER BY parts.timestamp", (data_id,))
+
+	for result in c.fetchall():
+		msg_id = result[0]
+		msg_text = result[1]
+		msg_time = result[2]
+
+		# Remove the last 3 digits (milliseconds) from timestamp
+		msg_time = int(str(msg_time)[:-3])
+		msg_time_formatted = datetime.fromtimestamp(msg_time).strftime(date_format_string)
+
+		sim_slot_id = result[3]
+
+		# A sim_slot_id equal to 0 indicates that the SMS was sent from the device
+		if sim_slot_id == 0:
+			msg_direction = "===>"
+		else:
+			msg_direction = "<---"
+
+		print("[{} {}]:\n{}\n".format(msg_time_formatted, msg_direction, msg_text))
