@@ -1,0 +1,134 @@
+<!-- Reader systems MUST process and validate the <package> element. Each three attributes are required. -->
+<!-- The unique-identifier-Attribute MUST SET, but reader systems MUST NOT catastrophically fail if two different EPUBs with the same UUID exist. -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="BookId" version="2.0">
+
+	<!-- <metadata> may contain any number of instances of any Dublin Core elements in any order.
+	At least one of each of Dublin Core title, identifier and language must be included in the metadata element.
+	Dublin Core elements, like any other elements in the OPF Package Document, may have an id attribute specified.
+	At least one Dublin Core identifier, which is referenced from the package unique-identifier attribute, must have an id specified.  -->
+	<metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+
+		<!-- REQUIRED: At lease one (multiple instances allowed) identifier element MUST exists and have the ID from unique-identifier from <package>.
+			 The scheme-Attribute is optional (http://www.idpf.org/epub/20/spec/OPF_2.0_latest.htm#Section2.2.10) -->
+		<dc:identifier id="BookId" opf:scheme="UUID">urn:uuid:2964b232-8241-4eb7-9960-0bb145da3810</dc:identifier>
+
+		<!-- Another instance of identifier (optional) -->
+		<dc:identifier opf:scheme="ISBN">xxxxxxxxxxx</dc:identifier>
+
+		<!-- REQUIRED: At lease one element is required and reader systems should consider using the first occurence for displaying the title of the publication. -->
+		<dc:title>Hello World</dc:title>
+
+		<!-- REQUIRED: An OPF Package Document MUST include at least one instance of this element type (multiple instances are allowed). -->
+		<dc:language>de</dc:language>
+
+		<!-- OPTIONAL: Publications with multiple co-authors should provide multiple creator elements, each containing one author.
+			 The order of creator elements is presumed to define the order in which the creators' names should be presented by the Reading System. 
+			 The two attributes are OPTIONAL: http://www.idpf.org/epub/20/spec/OPF_2.0_latest.htm#TOC2.2.2 -->
+		<dc:creator opf:file-as="Mustermann, Max" opf:role="aut">Max Mustermann</dc:creator>
+		
+		<dc:publisher>Digital Publishers</dc:publisher>
+
+		<!-- OPTIONAL: A party whose contribution to the publication is secondary to those named in creator elements. -->
+		<dc:contributor opf:role="aut">Marie Mustermann</dc:contributor>
+
+		<!-- OPTIONAL: Date of publication in the ISO 8601 format (either 2017-10-31, 2017-10 or just 2017). In addition, the date element has one optional OPF event attribute. The set of values for event are not defined by this specification; possible values MAY include: creation, publication, and modification. -->
+		<dc:date opf:event="modification">2010-01-05</dc:date>
+
+		<!-- OPTIONAL: Description of the publication's content. -->
+		<dc:description>Some long description of the book.</dc:description>
+		
+		<!-- OPTIONAL: Multiple instances of the subject element are supported, each including an arbitrary phrase or keyword.  -->
+		<dc:subject>Novel</dc:subject>
+		<dc:subject>...</dc:subject>
+
+		<!-- OPTIONAL <meta> elements for arbitrary metadata beyond the data described by the Dublin Core specification.
+			 For example, a meta information about the program which has generated this publication: -->
+		<meta content="0.8.3" name="Sigil version" />
+	</metadata>
+
+	<!-- The REQUIRED manifest must provide a list of all the files that are part of the publication (e.g. Content Documents, style sheets, image files, any embedded font files, any included schemas). The manifest element must contain one or more item elements. Each item describes a document, an image file, a style sheet, or other component that is considered part of the publication. The manifest must not include item elements referring to the file or files that make up the OPF Package Document.
+
+	Each item element contained within a manifest element MUST HAVE the attributes id, href (a URI; if relative, the URI is interpreted as relative to the OPF Package Document file containing the reference), and media-type (specifying the item’s MIME media type). The order of item elements in the manifest is not significant.
+
+	* The URIs in href attributes of item elements in the manifest MUST NOT use fragment identifiers ( "#" ).
+	* A single resource (href) must not be listed in the manifest more than ONCE
+	-->
+	<manifest>
+		<item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml" />
+		<item href="Text/Section_ISBN.xhtml" id="Section_ISBN.xhtml" media-type="application/xhtml+xml" />
+		<item href="Styles/stylesheet.css" id="stylesheet.css" media-type="text/css" />
+		<item href="Images/DP_Logo_bronze_150_px.png" id="DP_Logo_bronze_150_px.png" media-type="image/png" />
+		<item href="Images/Buecherregal_bronze_207_px.png" id="Buecherregal_bronze_207_px.png" media-type="image/png" />
+		<item href="Text/Section_Title.xhtml" id="Section_Title.xhtml" media-type="application/xhtml+xml" />
+		<item href="Text/Section_About_This_Ebook.xhtml" id="Section_About_This_Ebook.xhtml" media-type="application/xhtml+xml" />
+		<item href="Text/Section_dp.xhtml" id="Section_dp.xhtml" media-type="application/xhtml+xml" />
+		<item href="Text/Section_Author.xhtml" id="Section_Author.xhtml" media-type="application/xhtml+xml" />
+		<item href="Text/Section_Rezi.xhtml" id="Section_Rezi.xhtml" media-type="application/xhtml+xml" />
+		<item href="Text/Section_Advertise2.xhtml" id="Section_Advertise2.xhtml" media-type="application/xhtml+xml" />
+		<item href="Text/Leseprobe.xhtml" id="Leseprobe.xhtml" media-type="application/xhtml+xml" />
+		<item href="Images/J.Lossau_ebook.jpg" id="J.Lossau_ebook.jpg" media-type="image/jpeg" />
+		<item href="Images/Zapping_100x160.jpg" id="Zapping_100x160.jpg" media-type="image/jpeg" />
+		<item href="Images/Phobie_640px.jpg" id="Phobie_640px.jpg" media-type="image/jpeg" />
+		<item href="Images/NS_100x160.jpg" id="NS_100x160.jpg" media-type="image/jpeg" />
+		<item href="Text/cover.xhtml" id="cover.xhtml" media-type="application/xhtml+xml" />
+		<item href="Text/Section0006.xhtml" id="Section0006.xhtml" media-type="application/xhtml+xml" />
+		<item href="Text/Section0007.xhtml" id="Section0007.xhtml" media-type="application/xhtml+xml" />
+		<item href="Text/Section0008.xhtml" id="Section0008.xhtml" media-type="application/xhtml+xml" />
+		<item href="Text/Section0009.xhtml" id="Section0009.xhtml" media-type="application/xhtml+xml" />
+		<item href="Text/Section0010.xhtml" id="Section0010.xhtml" media-type="application/xhtml+xml" />
+		<item href="Text/Section0011.xhtml" id="Section0011.xhtml" media-type="application/xhtml+xml" />
+		<item href="Text/Section0005.xhtml" id="Section0005.xhtml" media-type="application/xhtml+xml" />
+		<item href="Text/Section0001.xhtml" id="Section0001.xhtml" media-type="application/xhtml+xml" />
+		<item href="Text/Section0002.xhtml" id="Section0002.xhtml" media-type="application/xhtml+xml" />
+		<item href="Text/Section0003.xhtml" id="Section0003.xhtml" media-type="application/xhtml+xml" />
+		<item href="Text/Section0004.xhtml" id="Section0004.xhtml" media-type="application/xhtml+xml" />
+		<item href="Fonts/FengardoNeue_Black.otf" id="FengardoNeue_Black.otf" media-type="application/vnd.ms-opentype" />
+		<item href="Images/SCHE_100x160.jpg" id="SCHE_100x160.jpg" media-type="image/jpeg" />
+	</manifest>
+
+	<!--  Following manifest, there MUST be one and only one spine element, which contains one or more itemref elements. Each itemref references an OPS Content Document designated in the manifest. The order of the itemref elements organizes the associated OPS Content Documents into the linear reading order of the publication.
+	
+	An OPS Content Document must be of one of the following media types: application/xhtml+xml, application/x-dtbook+xml, the deprecated text/x-oeb1-document, and Out-Of-Line XML Island (with required fallback.) When a document with a media type not from this list (or a document whose fallback chain doesn't include a document with a media type from this list) is referenced in spine, Reading Systems must not include it as part of the spine.
+
+	(Anmerkung: Aus dem Array dann alles rausschmeißen, was nicht einen der drei media-types hat. Anhang von idred auf das Manifest-Array zugreifen und den dortigen media-type überprüfen, da die itemref-Attribute nur über eine ID mit den items aus dem manifest referenziert sind)
+
+	As items appearing in the spine must either be OPS Content Documents or items with a fallback chain that includes an OPS Content, it is possible to have a fallback chain for a spine item that "falls over" another OPS Core Media type. For example, a spine itemref could reference a PDF document, that falls back to a PNG image, that in turn falls back to a OPS XHTML Content Document. It is valid for this item to appear in the spine because the fallback chain includes (in this case terminates with) an OPS Content Document.
+
+	The spine element must include the toc attribute, whose value is the the id attribute value of the required NCX document declared in manifest (see Section 2.4.1.)
+	-->
+	<spine toc="ncx">
+		<itemref idref="cover.xhtml" />
+		<itemref idref="Section_About_This_Ebook.xhtml" />
+		<itemref idref="Section_Author.xhtml" />
+		<itemref idref="Section_dp.xhtml" />
+		<itemref idref="Section_ISBN.xhtml" />
+		<itemref idref="Section_Title.xhtml" />
+		<itemref idref="Section0001.xhtml" />
+		<itemref idref="Section0002.xhtml" />
+		<itemref idref="Section0003.xhtml" />
+		<itemref idref="Section0004.xhtml" />
+		<itemref idref="Section0005.xhtml" />
+		<itemref idref="Section0006.xhtml" />
+		<itemref idref="Section0007.xhtml" />
+		<itemref idref="Section0008.xhtml" />
+		<itemref idref="Section0009.xhtml" />
+		<itemref idref="Section0010.xhtml" />
+		<itemref idref="Section0011.xhtml" />
+		<itemref idref="Section_Rezi.xhtml" />
+		<itemref idref="Leseprobe.xhtml" />
+		<itemref idref="Section_Advertise2.xhtml" />
+	</spine>
+
+	<!-- Within the package there may be one guide element, containing one or more reference elements. The guide element identifies fundamental structural components of the publication, to enable Reading Systems to provide convenient access to them. […] The structural components of the books are listed in reference elements contained within the guide element. These components could refer to the table of contents, list of illustrations, foreword, bibliography, and many other standard parts of the book. Reading Systems are not required to use the guide element in any way.
+
+	Each reference must have an href attribute referring to an OPS Content Document included in the manifest, and which may include a fragment identifier as defined in section 4.1 of RFC 2396 (see http://www.ietf.org/rfc/rfc2396.txt). Reading Systems may use the bounds of the referenced element to determine the scope of the reference. If a fragment identifier is not used, the scope is considered to be the entire document. This specification does not require Reading Systems to mark or otherwise identify the entire scope of a referenced element.
+
+	The required type attribute describes the publication component referenced by the href attribute. The values for the type attributes must be selected from the list defined below when applicable. Other types may be used when none of the predefined types are applicable; their names must begin with the string other.. The value for the type attribute is case-sensitive.
+
+	cover, title-page, toc, index, gloassary, acknowledgements, bibliography, colophon, copyright-page, dedication, epigraph, foreword, loi, lot, notes, preface, text
+	-->
+	<guide>
+		<reference href="Text/cover.xhtml" title="Buchdeckel" type="cover" />
+	</guide>
+</package>

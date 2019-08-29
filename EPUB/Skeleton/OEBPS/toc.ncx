@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN"
+ "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd">
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+  <head>
+    <meta content="urn:uuid:2964b232-8241-4eb7-9960-0bb145da3810" name="dtb:uid"/>
+    <meta content="2" name="dtb:depth"/>
+    <meta content="0" name="dtb:totalPageCount"/>
+    <meta content="0" name="dtb:maxPageNumber"/>
+  </head>
+  <docTitle>
+    <text>Blablabla</text>
+  </docTitle>
+  <navMap>
+    <navPoint id="navPoint-1" playOrder="1">
+      <navLabel>
+        <text>Über dieses E-Book</text>
+      </navLabel>
+      <content src="Text/Section_About_This_Ebook.xhtml"/>
+    </navPoint>
+    <navPoint id="navPoint-2" playOrder="2">
+      <navLabel>
+        <text>Über den Autor</text>
+      </navLabel>
+      <content src="Text/Section_Author.xhtml"/>
+    </navPoint>
+    <navPoint id="navPoint-3" playOrder="3">
+      <navLabel>
+        <text>Impressum</text>
+      </navLabel>
+      <content src="Text/Section_ISBN.xhtml"/>
+    </navPoint>
+    <navPoint id="navPoint-4" playOrder="4">
+      <navLabel>
+        <text>Hello World</text>
+      </navLabel>
+      <content src="Text/Section_Title.xhtml"/>
+      <navPoint id="navPoint-5" playOrder="5">
+        <navLabel>
+          <text>Kapitel 1</text>
+        </navLabel>
+        <content src="Text/Section0001.xhtml"/>
+      </navPoint>
+      <navPoint id="navPoint-6" playOrder="6">
+        <navLabel>
+          <text>Kapitel 2</text>
+        </navLabel>
+        <content src="Text/Section0002.xhtml"/>
+      </navPoint>
+      <navPoint id="navPoint-7" playOrder="7">
+        <navLabel>
+          <text>Kapitel 3</text>
+        </navLabel>
+        <content src="Text/Section0003.xhtml"/>
+      </navPoint>
+      <navPoint id="navPoint-8" playOrder="8">
+        <navLabel>
+          <text>Kapitel 4</text>
+        </navLabel>
+        <content src="Text/Section0004.xhtml"/>
+      </navPoint>
+      <navPoint id="navPoint-9" playOrder="9">
+        <navLabel>
+          <text>Kapitel 5</text>
+        </navLabel>
+        <content src="Text/Section0005.xhtml"/>
+      </navPoint>
+      <navPoint id="navPoint-10" playOrder="10">
+        <navLabel>
+          <text>Kapitel 6</text>
+        </navLabel>
+        <content src="Text/Section0006.xhtml"/>
+      </navPoint>
+      <navPoint id="navPoint-11" playOrder="11">
+        <navLabel>
+          <text>Kapitel 7</text>
+        </navLabel>
+        <content src="Text/Section0007.xhtml"/>
+      </navPoint>
+      <navPoint id="navPoint-12" playOrder="12">
+        <navLabel>
+          <text>Kapitel 8</text>
+        </navLabel>
+        <content src="Text/Section0008.xhtml"/>
+      </navPoint>
+      <navPoint id="navPoint-13" playOrder="13">
+        <navLabel>
+          <text>Kapitel 9</text>
+        </navLabel>
+        <content src="Text/Section0009.xhtml"/>
+      </navPoint>
+      <navPoint id="navPoint-14" playOrder="14">
+        <navLabel>
+          <text>Kapitel 10</text>
+        </navLabel>
+        <content src="Text/Section0010.xhtml"/>
+      </navPoint>
+      <navPoint id="navPoint-15" playOrder="15">
+        <navLabel>
+          <text>Nachtrag</text>
+        </navLabel>
+        <content src="Text/Section0011.xhtml"/>
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint-16" playOrder="16">
+      <navLabel>
+        <text>In eigener Sache…</text>
+      </navLabel>
+      <content src="Text/Section_Rezi.xhtml"/>
+    </navPoint>
+    <navPoint id="navPoint-17" playOrder="17">
+      <navLabel>
+        <text>Leseprobe</text>
+      </navLabel>
+      <content src="Text/Leseprobe.xhtml"/>
+    </navPoint>
+    <navPoint id="navPoint-18" playOrder="18">
+      <navLabel>
+        <text>Weitere Titel vom Autor</text>
+      </navLabel>
+      <content src="Text/Section_Advertise2.xhtml"/>
+    </navPoint>
+  </navMap>
+</ncx>
